@@ -143,46 +143,55 @@ nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
   toggle.textContent = "☰";
 }));
 
-// --- ACTIVITY UPLOAD FORM ---
+// --- VOLUNTEER SIGN-UP FORM ---
 
-// Add a new activity card with an uploaded photo
-const uploadForm = $("#upload-form");
-if (uploadForm) {
-  uploadForm.addEventListener("submit", function(e) {
+// Put the email address that should receive registrations here (optional).
+// If left empty, the email draft opens without a recipient.
+const CONTACT_EMAIL = "";
+
+const signupForm = $("#signup-form");
+const signupActivity = $("#signup-activity");
+
+// Fill the activity dropdown from the activities list
+if (signupActivity) {
+  const groups = Object.keys(categoryNames).map(cat => {
+    const options = activities
+      .filter(a => a.category === cat)
+      .map(a => `<option value="${a.title}">${a.title}</option>`)
+      .join("");
+    return `<optgroup label="${categoryNames[cat]}">${options}</optgroup>`;
+  }).join("");
+
+  signupActivity.innerHTML =
+    `<option value="" disabled selected>Select an activity</option>` +
+    `<option value="Any activity (I'm flexible)">Any activity (I'm flexible)</option>` +
+    groups;
+}
+
+if (signupForm) {
+  signupForm.addEventListener("submit", e => {
     e.preventDefault();
+    const data = new FormData(signupForm);
 
-    const title = $("#custom-title").value.trim();
-    const category = $("#custom-category").value;
-    const tag = $("#custom-tag").value.trim() || "Custom";
-    const desc = $("#custom-desc").value.trim();
-    const file = $("#custom-image-file").files[0];
+    const subject = encodeURIComponent(`GoldenHeart volunteer registration: ${data.get("activity")}`);
+    const body = encodeURIComponent(
+`Volunteer registration
 
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
+Activity: ${data.get("activity")}
+Full name: ${data.get("name")}
+Email: ${data.get("email")}
+Phone / WhatsApp: ${data.get("phone")}
+Age: ${data.get("age")}
+City: ${data.get("city")}
+Availability: ${data.get("availability")}
 
-      const newAct = {
-        id: Date.now(),
-        title: title,
-        category: category,
-        tag: tag,
-        time: "Flexible",
-        place: "Indonesia",
-        desc: desc,
-        impact: "A real, positive impact created directly by community-led action.",
-        image: imageUrl
-      };
+Why I want to join:
+${data.get("message")}`
+    );
 
-      activities.unshift(newAct);
-
-      // Refresh all activity sections
-      renderSection("#organised-cards", "organised");
-      renderSection("#local-cards", "local");
-      renderSection("#global-cards", "global");
-      renderResults();
-
-      uploadForm.reset();
-      alert("Your new activity with your photo has been added!");
-    }
+    $("#signup-success").hidden = false;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    signupForm.reset();
   });
 }
 
