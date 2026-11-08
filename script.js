@@ -274,33 +274,22 @@ if (signupForm) {
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result = await res.json();
+      const result = await res.json().catch(() => ({}));
 
-      if (res.ok && String(result.success) !== "false") {
+      if (res.ok && String(result.success) === "true") {
         showSignupMessage("Thank you! Your registration has been sent. We will contact you soon.", false);
         signupForm.reset();
       } else {
-        throw new Error("Send failed");
+        showSignupMessage(
+          "Your registration could not be sent. " + (result.message || "Please try again in a moment."),
+          true
+        );
       }
     } catch (err) {
-      // Fallback: open an email draft so the registration is not lost
-      const subject = encodeURIComponent(`GoldenHeart registration: ${payload.activity}`);
-      const body = encodeURIComponent(
-`Volunteer registration
-
-Organisation / activity: ${payload.activity}
-Full name: ${payload.name}
-Email: ${payload.email}
-Phone / WhatsApp: ${payload.phone}
-Age: ${payload.age}
-City: ${payload.city}
-Availability: ${payload.availability}
-
-Why I want to join:
-${payload.message}`
+      showSignupMessage(
+        "Could not connect to the email service. Please check your internet connection (or turn off your ad blocker for this site) and try again.",
+        true
       );
-      showSignupMessage("We couldn't send it automatically, so we opened an email draft for you. Please press send in your email app.", true);
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     } finally {
       signupSubmit.disabled = false;
       signupSubmit.textContent = "Submit registration ✦";
