@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover meaningful volunteering opportunities and make a golden impact with GoldenHeart.">
+  <title>GoldenHeart | Small Acts. Golden Impact.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="GoldenHeart home"><span class="brand-mark">✦</span> GoldenHeart</a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#why">Why Volunteer?</a>
+      <a href="#organised">Organised</a>
+      <a href="#local">Indonesia</a>
+      <a href="#global">Global</a>
+      <a href="#upload-manager">Upload Photo</a>
+      <a href="#about">About Us</a>
+      <a class="nav-cta" href="#explore">Explore Opportunities <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> A little kindness goes a long way</p>
+        <h1>Small acts.<br><em>Golden impact.</em></h1>
+        <p class="hero-copy">Every act of kindness has the power to make a difference. Discover meaningful volunteering opportunities, support your community, and inspire positive change—one small action at a time.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#explore">Find your opportunity <span>↗</span></a>
+          <a class="text-link" href="#why">Why volunteering? <span>↓</span></a>
+        </div>
+        <div class="hero-note">
+          <span class="avatars">✦ ♥ ✳</span>
+          <span>Good things grow when we show up.</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-photo" id="hero-photo-bg" role="img" aria-label="Volunteers working together in a community"></div>
+        <div class="photo-tag">
+          <span class="tag-icon">✦</span>
+          <div>
+            <strong>Make it matter.</strong>
+            <small>Start with one action.</small>
+          </div>
+        </div>
+        <div class="hero-stamp">GIVE<br>GOOD<br>ENERGY</div>
+      </div>
+      <div class="hero-bottom">
+        <span>VOLUNTEER · CONNECT · CHANGE</span>
+        <span>01 / MAKE A DIFFERENCE</span>
+      </div>
+    </section>
+
+    <section class="why section" id="why">
+      <div class="section-label">01 — THE WHY</div>
+      <div class="why-grid">
+        <h2>Giving goes beyond<br>what we<em> give</em></h2>
+        <div>
+          <p class="lead">Volunteering helps people turn their aspirations into reality while fostering compassion for others.</p>
+          <p>Volunteering promotes sustainable community growth by fostering empathy, building relationships, and sharing expertise to empower others. Together, we can create meaningful change.</p>
+          <a class="text-link" href="#explore">Find a place to start <span>↗</span></a>
+        </div>
+      </div>
+      <div class="benefits">
+        <article>
+          <span class="benefit-number">01</span>
+          <span class="benefit-icon">♡</span>
+          <h3>Build empathy</h3>
+          <p>Understand different experiences and connect with people beyond your usual circle.</p>
+        </article>
+        <article>
+          <span class="benefit-number">02</span>
+          <span class="benefit-icon">✳</span>
+          <h3>Grow your skills</h3>
+          <p>Practise teamwork, communication, leadership, and problem-solving.</p>
+        </article>
+        <article>
+          <span class="benefit-number">03</span>
+          <span class="benefit-icon">↗</span>
+          <h3>Create change</h3>
+          <p>Small, consistent contributions can make a meaningful difference.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="opportunities section" id="organised">
+      <div class="section-label">02 — FIND YOUR THING</div>
+      <div class="section-heading">
+        <div><h2>Good work comes<br>in <em>many forms.</em></h2></div>
+        <p>Explore different ways to help. Pick an activity that fits your interests, time, and community.</p>
+      </div>
+      <div class="category-intro">
+        <span class="category-dot gold"></span>
+        <div>
+          <h3>Organised volunteering</h3>
+          <p>Join a programme coordinated by an organisation.</p>
+        </div>
+        <a href="#explore" data-filter="organised" class="text-link filter-link">See organised activities ↗</a>
+      </div>
+      <div class="cards three" id="organised-cards"></div>
+    </section>
+
+    <section class="local-section section" id="local">
+      <div class="section-label">03 — CLOSE TO HOME</div>
+      <div class="section-heading">
+        <div><h2>Change starts<br><em>right here.</em></h2></div>
+        <p>Indonesia is full of ways to support people, places, and the environment around us.</p>
+      </div>
+      <div class="category-intro">
+        <span class="category-dot green"></span>
+        <div>
+          <h3>Local volunteering in Indonesia</h3>
+          <p>Support communities through practical, local action.</p>
+        </div>
+        <a href="#explore" data-filter="local" class="text-link filter-link">See local activities ↗</a>
+      </div>
+      <div class="cards three" id="local-cards"></div>
+    </section>
+
+    <section class="global-section section" id="global">
+      <div class="section-label">04 — BEYOND BORDERS</div>
+      <div class="section-heading">
+        <div><h2>One world.<br><em>Shared responsibility.</em></h2></div>
+        <p>Global challenges need people who care. Learn how volunteering can contribute to a more connected world.</p>
+      </div>
+      <div class="category-intro">
+        <span class="category-dot blue"></span>
+        <div>
+          <h3>International volunteering</h3>
+          <p>Contribute to causes that reach across borders.</p>
+        </div>
+        <a href="#explore" data-filter="global" class="text-link filter-link">See global activities ↗</a>
+      </div>
+      <div class="cards three" id="global-cards"></div>
+    </section>
+
+    <!-- Upload Section Manager -->
+    <section class="upload-section section" id="upload-manager">
+      <div class="section-label">05 — ACTIVITY UPLOADER</div>
+      <div class="section-heading">
+        <div>
+          <h2>Upload your own <em>activity photo.</em></h2>
+        </div>
+        <p>Choose a photo from your phone or computer gallery to add a new activity to this website.</p>
+      </div>
+
+      <div class="upload-grid">
+        <!-- Add New Activity Form -->
+        <div class="upload-card">
+          <h3>Add a New Activity Card</h3>
+          <form id="upload-form">
+            <div class="form-group">
+              <label for="custom-title">Activity Title</label>
+              <input type="text" id="custom-title" placeholder="Example: Children's Literacy Access in Kapuas" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="custom-category">Category</label>
+                <select id="custom-category">
+                  <option value="organised">Organised</option>
+                  <option value="local" selected>Indonesia (Local)</option>
+                  <option value="global">Global</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="custom-tag">Tag / Topic</label>
+                <input type="text" id="custom-tag" placeholder="Example: Education, Environment" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="custom-image-file">Upload Activity Photo</label>
+              <input type="file" id="custom-image-file" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="custom-desc">Short Description</label>
+              <textarea id="custom-desc" rows="3" placeholder="Describe the purpose and activities..." required></textarea>
+            </div>
+            <button type="submit" class="button button-dark">Add to Website ✦</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="explore section" id="explore">
+      <div class="section-label">06 — YOUR NEXT STEP</div>
+      <div class="explore-heading">
+        <div>
+          <h2>Find your <em>golden moment.</em></h2>
+          <p>Search the activities or let us pick one for you.</p>
+        </div>
+        <button class="button button-yellow" id="surprise-btn">Surprise me ✦</button>
+      </div>
+      <div class="search-panel">
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="search-input" type="search" placeholder="Search by activity, cause, or skill…" aria-label="Search volunteering activities">
+          <button id="clear-search" aria-label="Clear search">×</button>
+        </label>
+        <div class="filters" role="group" aria-label="Filter activities">
+          <button class="filter active" data-filter="all">All activities</button>
+          <button class="filter" data-filter="organised">Organised</button>
+          <button class="filter" data-filter="local">Indonesia</button>
+          <button class="filter" data-filter="global">Global</button>
+        </div>
+      </div>
+      <div class="results-meta">
+        <span id="result-count">12 opportunities</span>
+        <span>Choose what feels right for you.</span>
+      </div>
+      <div class="cards three" id="results"></div>
+      <p class="empty-state" id="empty-state" hidden>No activities found. Try another keyword or filter.</p>
+    </section>
+
+    <section class="join-banner">
+      <div class="banner-spark">✦</div>
+      <div>
+        <p class="eyebrow">Your time can mean a lot</p>
+        <h2>Ready to do a little <em>good?</em></h2>
+        <p>Every journey begins with one step. Take yours today.</p>
+      </div>
+      <a class="button button-dark" href="#explore">Explore activities ↗</a>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="section-label">07 — THE PEOPLE</div>
+      <div class="about-grid">
+        <div>
+          <h2>Four hearts.<br><em>One purpose.</em></h2>
+          <p class="lead">We are four students who believe that positive change starts with ordinary people doing meaningful things.</p>
+          <p>GoldenHeart is our way of making volunteering easier to discover—and reminding young people that their actions matter.</p>
+        </div>
+        <div class="team-note">
+          <span class="team-symbol">✦</span>
+          <p>Built with curiosity,<br>care, and a little creativity.</p>
+          <small>GOLDENHEART · UNIT 12 PROJECT</small>
+        </div>
+      </div>
+      <div class="team-grid">
+        <article class="team-card"><div class="member-photo photo-one" role="img" aria-label="Team member photo placeholder"></div><h3>Daniel Ethan Khouwindra</h3><p>Web Dev</p></article>
+        <article class="team-card"><div class="member-photo photo-two" role="img" aria-label="Team member photo placeholder"></div><h3>Daniel Nathan Khouwindra</h3><p>Web Tester</p></article>
+        <article class="team-card"><div class="member-photo photo-three" role="img" aria-label="Team member photo placeholder"></div><h3>Aaron Wijaya Kho</h3><p>Content Researcher</p></article>
+        <article class="team-card"><div class="member-photo photo-four" role="img" aria-label="Team member photo placeholder"></div><h3>Chandra Stefan</h3><p>Creative Researcher</p></article>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">A thought to take with you</p>
+      <h2>“No act of kindness,<br><em>however small,</em><br>is ever wasted.”</h2>
+      <p>Start where you are. Use what you have. Do what you can.</p>
+      <a class="button button-light" href="#home">Back to the top ↑</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand" href="#home"><span class="brand-mark">✦</span> GoldenHeart</a>
+    <span>Small acts. Golden impact.</span>
+    <span>English Project · Unit 12</span>
+  </footer>
+
+  <dialog id="activity-dialog" class="activity-dialog">
+    <button class="dialog-close" aria-label="Close details">×</button>
+    <div id="dialog-content"></div>
+  </dialog>
+
+  <dialog id="join-dialog" class="join-dialog">
+    <button class="dialog-close" aria-label="Close form">×</button>
+    <p class="eyebrow">TAKE THE FIRST STEP</p>
+    <h2>Join this <em>activity.</em></h2>
+    <p id="join-activity-name" class="join-selected"></p>
+    <form id="join-form">
+      <label>Your name<input name="name" required autocomplete="name" placeholder="Full name"></label>
+      <label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+      <label>Why are you interested?<textarea name="message" rows="3" placeholder="Tell us a little…"></textarea></label>
+      <p class="form-note">This demo opens your email app with a draft. It does not submit data to a server.</p>
+      <button class="button button-dark" type="submit">Prepare email ↗</button>
+    </form>
+  </dialog>
+</body>
+</html>
