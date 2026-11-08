@@ -147,7 +147,7 @@ nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
 
 // Put the email address that should receive registrations here (optional).
 // If left empty, the email draft opens without a recipient.
-const CONTACT_EMAIL = "";
+const CONTACT_EMAIL = "daniel.ethankhouw@gmail.com";
 
 const signupForm = $("#signup-form");
 const signupActivity = $("#signup-activity");
