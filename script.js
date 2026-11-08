@@ -248,37 +248,36 @@ renderSection("#global-cards", "global");
 renderResults();
 
 // --- ENGLISH FORM VALIDATION MESSAGES ---
-// Replaces the browser's default (language-dependent) messages with English ones
-function applyEnglishValidation(form) {
-  form.querySelectorAll("input, select, textarea").forEach(field => {
-    field.addEventListener("invalid", () => {
-      field.setCustomValidity("");
-      const v = field.validity;
+// Works for every form on the page, including ones added later
+document.addEventListener("invalid", e => {
+  const field = e.target;
+  if (!field.setCustomValidity) return;
 
-      if (v.valueMissing) {
-        if (field.type === "checkbox") {
-          field.setCustomValidity("Please tick this box before submitting.");
-        } else if (field.tagName === "SELECT") {
-          field.setCustomValidity("Please select an option before submitting.");
-        } else {
-          field.setCustomValidity("Please fill this up before submitting.");
-        }
-      } else if (v.typeMismatch && field.type === "email") {
-        field.setCustomValidity("Please enter a valid email address (for example: name@example.com).");
-      } else if (v.rangeUnderflow) {
-        field.setCustomValidity(`Please enter a value of ${field.min} or higher.`);
-      } else if (v.rangeOverflow) {
-        field.setCustomValidity(`Please enter a value of ${field.max} or lower.`);
-      } else if (v.badInput) {
-        field.setCustomValidity("Please enter a valid value.");
-      }
-    });
+  field.setCustomValidity("");
+  const v = field.validity;
 
-    // Clear the custom message as soon as the person edits the field
-    const clear = () => field.setCustomValidity("");
-    field.addEventListener("input", clear);
-    field.addEventListener("change", clear);
+  if (v.valueMissing) {
+    if (field.type === "checkbox") {
+      field.setCustomValidity("Please tick this box before submitting.");
+    } else if (field.tagName === "SELECT") {
+      field.setCustomValidity("Please select an option before submitting.");
+    } else {
+      field.setCustomValidity("Please fill this up before submitting.");
+    }
+  } else if (v.typeMismatch && field.type === "email") {
+    field.setCustomValidity("Please enter a valid email address (for example: name@example.com).");
+  } else if (v.rangeUnderflow) {
+    field.setCustomValidity("Please enter a value of " + field.min + " or higher.");
+  } else if (v.rangeOverflow) {
+    field.setCustomValidity("Please enter a value of " + field.max + " or lower.");
+  } else if (v.badInput) {
+    field.setCustomValidity("Please enter a valid value.");
+  }
+}, true);
+
+// Clear the custom message as soon as the person edits a field
+["input", "change"].forEach(evt => {
+  document.addEventListener(evt, e => {
+    if (e.target.setCustomValidity) e.target.setCustomValidity("");
   });
-}
-
-$$("form").forEach(applyEnglishValidation);
+});
