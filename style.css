@@ -52,7 +52,7 @@ button{cursor:pointer}
 .hero-note{display:flex;gap:12px;align-items:center;color:#718076;font-size:.75rem;margin-top:44px}
 .avatars{letter-spacing:4px;color:#a68a2d;font-size:1rem}
 .hero-visual{height:490px;position:relative;max-width:570px;width:100%;justify-self:end}
-.hero-photo{height:100%;width:83%;margin-left:auto;border-radius:46% 46% 22px 22px;background:linear-gradient(0deg,#183d2b35,#183d2b05),url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1000&q=85') center/cover;transition:background-image .4s ease}
+.hero-photo{height:100%;width:83%;margin-left:auto;border-radius:46% 46% 22px 22px;background:linear-gradient(0deg,#183d2b35,#183d2b05),url('https://uin-alauddin.ac.id/assets/file/berita/mahasiswa-pbi-uin-alauddin-jadi-volunteer-di-rumah-baca-pesisir-0323.jpeg') center/cover;transition:background-image .4s ease}
 .photo-tag{position:absolute;left:0;bottom:55px;background:white;padding:16px 20px;border-radius:15px;box-shadow:0 15px 40px #203d2a20;display:flex;gap:12px;align-items:center;border:1px solid #f2e4bd}
 .tag-icon{background:linear-gradient(135deg,#ffe9a2,#d9ad43);color:#6b4d0b;width:38px;height:38px;border-radius:12px;display:grid;place-items:center}
 .photo-tag strong,.photo-tag small{display:block}
@@ -106,20 +106,19 @@ button{cursor:pointer}
 .local-section{background:#f4f7f1}
 .global-section{background:#f7f7f2}
 
-/* Upload Manager Section Styling */
-.upload-section{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.upload-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:35px}
-.upload-card{background:#fff;border:1px solid #eadcb5;border-radius:18px;padding:28px;box-shadow:0 10px 30px #183d2b0a}
-.upload-card h3{font:700 1.2rem var(--head);margin:0 0 8px}
-.upload-card p{font-size:.83rem;color:var(--muted);margin:0 0 20px}
-.file-dropzone{display:grid;place-items:center;height:120px;border:2px dashed #d8b75c;border-radius:12px;background:var(--gold-light);cursor:pointer;transition:background .2s}
-.file-dropzone:hover{background:#fcecb8}
-.file-dropzone span{font-weight:700;font-size:.85rem;color:var(--gold-deep)}
-.file-dropzone input[type="file"]{display:none}
-#upload-form .form-group{display:grid;gap:6px;margin-bottom:14px}
-#upload-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-#upload-form label{font-weight:700;font-size:.78rem;color:var(--ink)}
-#upload-form input,#upload-form select,#upload-form textarea{border:1px solid #dce4da;border-radius:10px;padding:11px;background:#fff;outline-color:var(--green)}
+/* Volunteer Sign-up Section Styling */
+.signup-section{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.signup-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:35px}
+.signup-card{background:#fff;border:1px solid #eadcb5;border-radius:18px;padding:28px;box-shadow:0 10px 30px #183d2b0a}
+.signup-card h3{font:700 1.2rem var(--head);margin:0 0 18px}
+#signup-form .form-group{display:grid;gap:6px;margin-bottom:14px}
+#signup-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#signup-form label{font-weight:700;font-size:.78rem;color:var(--ink)}
+#signup-form input:not([type="checkbox"]),#signup-form select,#signup-form textarea{border:1px solid #dce4da;border-radius:10px;padding:11px;background:#fff;outline-color:var(--green);width:100%}
+#signup-form .consent{display:flex;align-items:flex-start;gap:10px;font-weight:500;color:var(--muted);margin:4px 0 8px}
+#signup-form .consent input{width:18px;height:18px;margin-top:3px;accent-color:var(--green);flex-shrink:0}
+#signup-form .form-note{margin:0 0 16px}
+.signup-success{margin:16px 0 0;padding:12px 16px;background:var(--mint);color:var(--green);border-radius:12px;font-size:.82rem;font-weight:600}
 
 .explore{background:#fff}
 .explore-heading{margin-bottom:35px}
@@ -227,7 +226,7 @@ dialog::backdrop{background:#14271db3;backdrop-filter:blur(4px)}
   .hero-visual{height:420px}
   .hero-bottom{left:5%;right:5%}
   .section{padding:80px 6%}
-  .upload-grid{grid-template-columns:1fr}
+  .signup-grid{grid-template-columns:1fr}
   .cards{gap:13px}
   .card-image{height:155px}
   .card-body{padding:16px}
@@ -263,7 +262,8 @@ dialog::backdrop{background:#14271db3;backdrop-filter:blur(4px)}
   .cards{grid-template-columns:1fr}
   .card-image{height:210px}
   .card-body p{min-height:0}
-  #upload-form .form-row{grid-template-columns:1fr}
+  #signup-form .form-row{grid-template-columns:1fr;gap:0}
+  .signup-card{padding:22px}
   .explore-heading{align-items:start}
   .search-panel{padding:14px}
   .filters{gap:6px}
@@ -289,7 +289,6 @@ dialog::backdrop{background:#14271db3;backdrop-filter:blur(4px)}
 
 
 /* GOLDENHEART TEAM — LAYOUT FIX */
-/* Paste at the VERY END of style.css */
 
 .team-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
