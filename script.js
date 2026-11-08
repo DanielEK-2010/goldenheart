@@ -143,14 +143,15 @@ nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
   toggle.textContent = "☰";
 }));
 
-// --- VOLUNTEER SIGN-UP FORM ---
+// --- REGISTRATION FORM ---
 
-// Put the email address that should receive registrations here (optional).
-// If left empty, the email draft opens without a recipient.
+// Registrations are sent to this email address
 const CONTACT_EMAIL = "daniel.ethankhouw@gmail.com";
 
 const signupForm = $("#signup-form");
 const signupActivity = $("#signup-activity");
+const signupSuccess = $("#signup-success");
+const signupSubmit = $("#signup-submit");
 
 // Fill the activity dropdown from the activities list
 if (signupActivity) {
@@ -163,35 +164,80 @@ if (signupActivity) {
   }).join("");
 
   signupActivity.innerHTML =
-    `<option value="" disabled selected>Select an activity</option>` +
+    `<option value="" disabled selected>Select an organisation or activity</option>` +
     `<option value="Any activity (I'm flexible)">Any activity (I'm flexible)</option>` +
     groups;
 }
 
+function showSignupMessage(text, isError) {
+  signupSuccess.textContent = text;
+  signupSuccess.classList.toggle("error", Boolean(isError));
+  signupSuccess.hidden = false;
+}
+
 if (signupForm) {
-  signupForm.addEventListener("submit", e => {
+  signupForm.addEventListener("submit", async e => {
     e.preventDefault();
     const data = new FormData(signupForm);
 
-    const subject = encodeURIComponent(`GoldenHeart volunteer registration: ${data.get("activity")}`);
-    const body = encodeURIComponent(
+    // Stop spam bots (the hidden honeypot field should stay empty)
+    if (data.get("_honey")) return;
+
+    const payload = {
+      name: data.get("name"),
+      email: data.get("email"),
+      phone: data.get("phone"),
+      age: data.get("age"),
+      city: data.get("city"),
+      availability: data.get("availability"),
+      activity: data.get("activity"),
+      message: data.get("message"),
+      _subject: `GoldenHeart registration: ${data.get("activity")}`,
+      _template: "table",
+      _captcha: "false"
+    };
+
+    signupSubmit.disabled = true;
+    signupSubmit.textContent = "Sending…";
+    signupSuccess.hidden = true;
+
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const result = await res.json();
+
+      if (res.ok && String(result.success) !== "false") {
+        showSignupMessage("Thank you! Your registration has been sent. We will contact you soon.", false);
+        signupForm.reset();
+      } else {
+        throw new Error("Send failed");
+      }
+    } catch (err) {
+      // Fallback: open an email draft so the registration is not lost
+      const subject = encodeURIComponent(`GoldenHeart registration: ${payload.activity}`);
+      const body = encodeURIComponent(
 `Volunteer registration
 
-Activity: ${data.get("activity")}
-Full name: ${data.get("name")}
-Email: ${data.get("email")}
-Phone / WhatsApp: ${data.get("phone")}
-Age: ${data.get("age")}
-City: ${data.get("city")}
-Availability: ${data.get("availability")}
+Organisation / activity: ${payload.activity}
+Full name: ${payload.name}
+Email: ${payload.email}
+Phone / WhatsApp: ${payload.phone}
+Age: ${payload.age}
+City: ${payload.city}
+Availability: ${payload.availability}
 
 Why I want to join:
-${data.get("message")}`
-    );
-
-    $("#signup-success").hidden = false;
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    signupForm.reset();
+${payload.message}`
+      );
+      showSignupMessage("We couldn't send it automatically, so we opened an email draft for you. Please press send in your email app.", true);
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    } finally {
+      signupSubmit.disabled = false;
+      signupSubmit.textContent = "Submit registration ✦";
+    }
   });
 }
 
