@@ -76,14 +76,24 @@ function showDetails(id) {
   $("#activity-dialog").showModal();
 }
 
-function showJoin(id) {
+// "Join" buttons: jump to the registration form with the activity pre-selected
+function goToSignup(id) {
   const a = activities.find(x => x.id === Number(id));
   if (!a) return;
-  
-  $("#join-activity-name").textContent = a.title;
-  $("#join-form").dataset.activity = a.title;
-  $("#activity-dialog").close();
-  $("#join-dialog").showModal();
+
+  const select = $("#signup-activity");
+  if (select) select.value = a.title;
+
+  const dialog = $("#activity-dialog");
+  if (dialog && dialog.open) dialog.close();
+
+  const section = $("#signup");
+  if (section) section.scrollIntoView({ behavior: "smooth" });
+
+  setTimeout(() => {
+    const name = $("#signup-name");
+    if (name) name.focus({ preventScroll: true });
+  }, 700);
 }
 
 // Event Listeners
@@ -93,7 +103,7 @@ document.addEventListener("click", e => {
   const f = e.target.closest("[data-filter]");
   
   if (d) showDetails(d.dataset.details);
-  if (j) showJoin(j.dataset.join);
+  if (j) goToSignup(j.dataset.join);
   if (f && f.classList.contains("filter-link")) {
     activeFilter = f.dataset.filter;
     $$(".filter").forEach(b => b.classList.toggle("active", b.dataset.filter === activeFilter));
@@ -118,15 +128,6 @@ $("#surprise-btn").addEventListener("click", () => {
   const pool = activities.filter(a => activeFilter === "all" || a.category === activeFilter);
   const a = pool[Math.floor(Math.random() * pool.length)];
   if (a) showDetails(a.id);
-});
-
-$("#join-form").addEventListener("submit", e => {
-  e.preventDefault();
-  const f = e.currentTarget;
-  const data = new FormData(f);
-  const subject = encodeURIComponent(`GoldenHeart volunteering: ${f.dataset.activity}`);
-  const body = encodeURIComponent(`Activity: ${f.dataset.activity}\nName: ${data.get("name")}\nEmail: ${data.get("email")}\nMessage: ${data.get("message") || "(No message)"}`);
-  window.location.href = `mailto:?subject=${subject}&body=${body}`;
 });
 
 // Mobile Navigation Toggle
@@ -168,6 +169,72 @@ if (signupActivity) {
     `<option value="Any activity (I'm flexible)">Any activity (I'm flexible)</option>` +
     groups;
 }
+
+// --- ENGLISH FORM VALIDATION (shows its own messages, not the browser's) ---
+function errorMessageFor(field) {
+  const v = field.validity;
+  if (v.valueMissing) {
+    if (field.type === "checkbox") return "Please tick this box before submitting.";
+    if (field.tagName === "SELECT") return "Please select an option before submitting.";
+    return "Please fill this up before submitting.";
+  }
+  if (v.typeMismatch && field.type === "email") return "Please enter a valid email address (for example: name@example.com).";
+  if (v.rangeUnderflow) return "Please enter a value of " + field.min + " or higher.";
+  if (v.rangeOverflow) return "Please enter a value of " + field.max + " or lower.";
+  if (v.badInput) return "Please enter a valid value.";
+  return "Please check this field.";
+}
+
+function clearFieldError(field) {
+  field.classList.remove("has-error");
+  field.removeAttribute("aria-invalid");
+  const holder = field.type === "checkbox" ? field.closest("label") : field;
+  const next = holder && holder.nextElementSibling;
+  if (next && next.classList.contains("field-error")) next.remove();
+}
+
+function showFieldError(field, message) {
+  clearFieldError(field);
+  field.classList.add("has-error");
+  field.setAttribute("aria-invalid", "true");
+  const msg = document.createElement("span");
+  msg.className = "field-error";
+  msg.setAttribute("role", "alert");
+  msg.textContent = message;
+  const holder = field.type === "checkbox" ? field.closest("label") : field;
+  holder.insertAdjacentElement("afterend", msg);
+}
+
+function setupEnglishValidation(form) {
+  if (!form) return;
+  form.setAttribute("novalidate", ""); // turn off the browser's own (Indonesian) bubbles
+
+  form.addEventListener("submit", e => {
+    let firstInvalid = null;
+    form.querySelectorAll("input, select, textarea").forEach(field => {
+      if (field.name === "_honey") return;
+      clearFieldError(field);
+      if (!field.checkValidity()) {
+        showFieldError(field, errorMessageFor(field));
+        if (!firstInvalid) firstInvalid = field;
+      }
+    });
+    if (firstInvalid) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      firstInvalid.focus();
+    }
+  });
+
+  ["input", "change"].forEach(evt =>
+    form.addEventListener(evt, e => {
+      if (e.target.classList && e.target.classList.contains("has-error")) clearFieldError(e.target);
+    })
+  );
+}
+
+// Must be set up BEFORE the submit handler below, so it checks the fields first
+setupEnglishValidation(signupForm);
 
 function showSignupMessage(text, isError) {
   signupSuccess.textContent = text;
@@ -246,38 +313,3 @@ renderSection("#organised-cards", "organised");
 renderSection("#local-cards", "local");
 renderSection("#global-cards", "global");
 renderResults();
-
-// --- ENGLISH FORM VALIDATION MESSAGES ---
-// Works for every form on the page, including ones added later
-document.addEventListener("invalid", e => {
-  const field = e.target;
-  if (!field.setCustomValidity) return;
-
-  field.setCustomValidity("");
-  const v = field.validity;
-
-  if (v.valueMissing) {
-    if (field.type === "checkbox") {
-      field.setCustomValidity("Please tick this box before submitting.");
-    } else if (field.tagName === "SELECT") {
-      field.setCustomValidity("Please select an option before submitting.");
-    } else {
-      field.setCustomValidity("Please fill this up before submitting.");
-    }
-  } else if (v.typeMismatch && field.type === "email") {
-    field.setCustomValidity("Please enter a valid email address (for example: name@example.com).");
-  } else if (v.rangeUnderflow) {
-    field.setCustomValidity("Please enter a value of " + field.min + " or higher.");
-  } else if (v.rangeOverflow) {
-    field.setCustomValidity("Please enter a value of " + field.max + " or lower.");
-  } else if (v.badInput) {
-    field.setCustomValidity("Please enter a valid value.");
-  }
-}, true);
-
-// Clear the custom message as soon as the person edits a field
-["input", "change"].forEach(evt => {
-  document.addEventListener(evt, e => {
-    if (e.target.setCustomValidity) e.target.setCustomValidity("");
-  });
-});
