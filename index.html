@@ -20,7 +20,7 @@
       <a href="#organised">Organised</a>
       <a href="#local">Indonesia</a>
       <a href="#global">Global</a>
-      <a href="#signup">Join Us</a>
+      <a href="#signup">Registration</a>
       <a href="#about">About Us</a>
       <a class="nav-cta" href="#explore">Explore Opportunities <span>↗</span></a>
     </nav>
@@ -141,20 +141,23 @@
       <div class="cards three" id="global-cards"></div>
     </section>
 
-    <!-- Volunteer Sign-up Section -->
+    <!-- Registration Section -->
     <section class="signup-section section" id="signup">
-      <div class="section-label">05 — JOIN US</div>
+      <div class="section-label">05 — REGISTRATION</div>
       <div class="section-heading">
         <div>
-          <h2>Ready to <em>join in?</em></h2>
+          <h2>Registration <em>form.</em></h2>
         </div>
-        <p>Fill in the form below to join an organisation or volunteering activity. We'll prepare your details as an email so you can send them right away.</p>
+        <p>Fill in this form to join an organisation or volunteering activity. Your registration will be sent directly to our team.</p>
       </div>
 
       <div class="signup-grid">
         <div class="signup-card">
-          <h3>Volunteer Registration</h3>
+          <h3>Registration Form to Join an Organisation or Activity</h3>
           <form id="signup-form">
+            <!-- Honeypot field to block spam bots (leave empty) -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
             <div class="form-row">
               <div class="form-group">
                 <label for="signup-name">Full name</label>
@@ -191,7 +194,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="signup-activity">Activity or organisation you'd like to join</label>
+              <label for="signup-activity">Organisation or activity you'd like to join</label>
               <select id="signup-activity" name="activity" required></select>
             </div>
             <div class="form-group">
@@ -202,9 +205,8 @@
               <input type="checkbox" id="signup-consent" required>
               <span>I agree to be contacted about this volunteering opportunity.</span>
             </label>
-            <p class="form-note">This demo opens your email app with a draft. It does not submit data to a server.</p>
-            <button type="submit" class="button button-dark">Submit registration ✦</button>
-            <p class="signup-success" id="signup-success" hidden>Thank you! Your registration email is ready. Please press send in your email app to complete it.</p>
+            <button type="submit" class="button button-dark" id="signup-submit">Submit registration ✦</button>
+            <p class="signup-success" id="signup-success" role="status" hidden></p>
           </form>
         </div>
       </div>
