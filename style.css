@@ -330,3 +330,7 @@ dialog::backdrop{background:#14271db3;backdrop-filter:blur(4px)}
     aspect-ratio: 4 / 5;
   }
 }
+
+.signup-success.error{background:#fdf0e1;color:#8a5a12}
+#signup-submit:disabled{opacity:.7;cursor:wait;transform:none;box-shadow:none}
+#signup-form input[name="_honey"]{display:none!important}
