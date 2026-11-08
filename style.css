@@ -1,4 +1,4 @@
-*{box-sizing:border-box} 
+*{box-sizing:border-box}
 :root{
   --ink:#172b24;
   --green:#244f3d;
@@ -14,7 +14,7 @@
   --gold-bright:#f0cd65;
   --gold-light:#fff3cf;
   --gold-deep:#9b741d;
-} 
+}
 
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;font-family:var(--body);color:var(--ink);background:#fff;line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
@@ -156,7 +156,7 @@ button{cursor:pointer}
 .team-card h3{font:700 1rem var(--head);margin:13px 0 0}
 .team-card p{font-size:.78rem;color:var(--muted);margin:2px 0}
 .member-photo{height:220px;border-radius:13px;background-size:cover;background-position:center;background-color:#e7eee5}
-.photo-one{background-image:url("images/daniel_ethan.jpeg")} 
+.photo-one{background-image:url("images/daniel_ethan.jpeg")}
 .photo-two{background-image:url("images/daniel_nathan.jpeg")}
 .photo-three{background-image:url("images/aaron.jpeg")}
 .photo-four{background-image:url("images/chandra.jpeg")}
@@ -287,16 +287,13 @@ dialog::backdrop{background:#14271db3;backdrop-filter:blur(4px)}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
 
-
 /* GOLDENHEART TEAM — LAYOUT FIX */
-
 .team-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
   align-items: start;
 }
 
-/* Uniform photo proportions */
 .member-photo {
   width: 100%;
   height: auto;
@@ -305,26 +302,22 @@ dialog::backdrop{background:#14271db3;backdrop-filter:blur(4px)}
   background-position: center;
 }
 
-/* Tablet */
 @media (max-width: 900px) {
   .team-grid {
     gap: 12px;
   }
-
   .member-photo {
     height: auto;
     aspect-ratio: 4 / 5;
   }
 }
 
-/* Mobile */
 @media (max-width: 680px) {
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px 14px;
     margin-top: 35px;
   }
-
   .member-photo {
     height: auto;
     aspect-ratio: 4 / 5;
@@ -335,28 +328,45 @@ dialog::backdrop{background:#14271db3;backdrop-filter:blur(4px)}
 #signup-submit:disabled{opacity:.7;cursor:wait;transform:none;box-shadow:none}
 #signup-form input[name="_honey"]{display:none!important}
 
-/* --- TAMBAHAN STYLE UNTUK DEFINISI & MEMBER --- */
-
+/* DEFINITION BOX & MEMBER CARDS */
 .definition-box {
   margin-top: 18px;
-  background: linear-gradient(135deg, #fff8e6, #f7f5ed);
-  border: 1px solid #ead8a4;
-  border-radius: 14px;
-  padding: 16px 20px;
-  font-size: .84rem;
-  color: var(--muted);
-  line-height: 1.6;
+  background: #fdfbf7;
+  border: 1px solid #f2e4c9;
+  border-radius: 18px;
+  padding: 24px 28px;
+  font-size: .88rem;
+  color: #4a5850;
+  line-height: 1.65;
 }
 
 .definition-box strong {
   color: var(--green);
   font-family: var(--head);
+  font-weight: 800;
+}
+
+.category-tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.tag-pill {
+  border: 1px solid #e0ce9e;
+  background: #fff;
+  border-radius: 99px;
+  padding: 6px 14px;
+  font-size: .72rem;
+  font-weight: 700;
+  color: #634b17;
 }
 
 .member-desc {
   font-size: .8rem;
   color: #56665c;
-  margin: 6px 0 10px;
+  margin: 10px 0;
   line-height: 1.5;
 }
 
