@@ -52,7 +52,7 @@ button{cursor:pointer}
 .hero-note{display:flex;gap:12px;align-items:center;color:#718076;font-size:.75rem;margin-top:44px}
 .avatars{letter-spacing:4px;color:#a68a2d;font-size:1rem}
 .hero-visual{height:490px;position:relative;max-width:570px;width:100%;justify-self:end}
-.hero-photo{height:100%;width:83%;margin-left:auto;border-radius:46% 46% 22px 22px;background:linear-gradient(0deg,#183d2b35,#183d2b05),url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1000&q=85') center/cover;transition:background-image .4s ease}
+.hero-photo{height:100%;width:83%;margin-left:auto;border-radius:46% 46% 22px 22px;background:linear-gradient(0deg,#183d2b35,#183d2b05),url('https://uin-alauddin.ac.id/assets/file/berita/mahasiswa-pbi-uin-alauddin-jadi-volunteer-di-rumah-baca-pesisir-0323.jpeg') center/cover;transition:background-image .4s ease}
 .photo-tag{position:absolute;left:0;bottom:55px;background:white;padding:16px 20px;border-radius:15px;box-shadow:0 15px 40px #203d2a20;display:flex;gap:12px;align-items:center;border:1px solid #f2e4bd}
 .tag-icon{background:linear-gradient(135deg,#ffe9a2,#d9ad43);color:#6b4d0b;width:38px;height:38px;border-radius:12px;display:grid;place-items:center}
 .photo-tag strong,.photo-tag small{display:block}
