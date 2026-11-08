@@ -334,3 +334,42 @@ dialog::backdrop{background:#14271db3;backdrop-filter:blur(4px)}
 .signup-success.error{background:#fdf0e1;color:#8a5a12}
 #signup-submit:disabled{opacity:.7;cursor:wait;transform:none;box-shadow:none}
 #signup-form input[name="_honey"]{display:none!important}
+
+/* --- TAMBAHAN STYLE UNTUK DEFINISI & MEMBER --- */
+
+.definition-box {
+  margin-top: 18px;
+  background: linear-gradient(135deg, #fff8e6, #f7f5ed);
+  border: 1px solid #ead8a4;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-size: .84rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.definition-box strong {
+  color: var(--green);
+  font-family: var(--head);
+}
+
+.member-desc {
+  font-size: .8rem;
+  color: #56665c;
+  margin: 6px 0 10px;
+  line-height: 1.5;
+}
+
+.member-responsibility {
+  background: #f7f8f4;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: .74rem;
+  color: var(--muted);
+}
+
+.member-responsibility strong {
+  color: var(--ink);
+  font-family: var(--head);
+}
