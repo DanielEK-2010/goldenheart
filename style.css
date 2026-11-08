@@ -157,7 +157,7 @@ button{cursor:pointer}
 .team-card h3{font:700 1rem var(--head);margin:13px 0 0}
 .team-card p{font-size:.78rem;color:var(--muted);margin:2px 0}
 .member-photo{height:220px;border-radius:13px;background-size:cover;background-position:center;background-color:#e7eee5}
-.photo-one{background-image:url("images/daniel_ethan.jpeg")}
+.photo-one{background-image:url("images/daniel_ethan.jpeg")} 
 .photo-two{background-image:url("images/daniel_nathan.jpeg")}
 .photo-three{background-image:url("images/aaron.jpeg")}
 .photo-four{background-image:url("images/chandra.jpeg")}
