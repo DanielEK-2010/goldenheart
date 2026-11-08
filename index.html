@@ -20,7 +20,7 @@
       <a href="#organised">Organised</a>
       <a href="#local">Indonesia</a>
       <a href="#global">Global</a>
-      <a href="#upload-manager">Upload Photo</a>
+      <a href="#signup">Join Us</a>
       <a href="#about">About Us</a>
       <a class="nav-cta" href="#explore">Explore Opportunities <span>↗</span></a>
     </nav>
@@ -141,48 +141,70 @@
       <div class="cards three" id="global-cards"></div>
     </section>
 
-    <!-- Upload Section Manager -->
-    <section class="upload-section section" id="upload-manager">
-      <div class="section-label">05 — ACTIVITY UPLOADER</div>
+    <!-- Volunteer Sign-up Section -->
+    <section class="signup-section section" id="signup">
+      <div class="section-label">05 — JOIN US</div>
       <div class="section-heading">
         <div>
-          <h2>Upload your own <em>activity photo.</em></h2>
+          <h2>Ready to <em>join in?</em></h2>
         </div>
-        <p>Choose a photo from your phone or computer gallery to add a new activity to this website.</p>
+        <p>Fill in the form below to join an organisation or volunteering activity. We'll prepare your details as an email so you can send them right away.</p>
       </div>
 
-      <div class="upload-grid">
-        <!-- Add New Activity Form -->
-        <div class="upload-card">
-          <h3>Add a New Activity Card</h3>
-          <form id="upload-form">
-            <div class="form-group">
-              <label for="custom-title">Activity Title</label>
-              <input type="text" id="custom-title" placeholder="Example: Children's Literacy Access in Kapuas" required>
+      <div class="signup-grid">
+        <div class="signup-card">
+          <h3>Volunteer Registration</h3>
+          <form id="signup-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signup-name">Full name</label>
+                <input type="text" id="signup-name" name="name" placeholder="Your full name" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label for="signup-email">Email address</label>
+                <input type="email" id="signup-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+              </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="custom-category">Category</label>
-                <select id="custom-category">
-                  <option value="organised">Organised</option>
-                  <option value="local" selected>Indonesia (Local)</option>
-                  <option value="global">Global</option>
-                </select>
+                <label for="signup-phone">Phone / WhatsApp</label>
+                <input type="tel" id="signup-phone" name="phone" placeholder="Example: 0812 3456 7890" autocomplete="tel" required>
               </div>
               <div class="form-group">
-                <label for="custom-tag">Tag / Topic</label>
-                <input type="text" id="custom-tag" placeholder="Example: Education, Environment" required>
+                <label for="signup-age">Age</label>
+                <input type="number" id="signup-age" name="age" min="10" max="99" placeholder="Your age" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signup-city">City</label>
+                <input type="text" id="signup-city" name="city" placeholder="Example: Singkawang" autocomplete="address-level2" required>
+              </div>
+              <div class="form-group">
+                <label for="signup-availability">Availability</label>
+                <select id="signup-availability" name="availability" required>
+                  <option value="" disabled selected>Select your availability</option>
+                  <option value="Weekdays">Weekdays</option>
+                  <option value="Weekends">Weekends</option>
+                  <option value="Flexible">Flexible</option>
+                </select>
               </div>
             </div>
             <div class="form-group">
-              <label for="custom-image-file">Upload Activity Photo</label>
-              <input type="file" id="custom-image-file" accept="image/*" required>
+              <label for="signup-activity">Activity or organisation you'd like to join</label>
+              <select id="signup-activity" name="activity" required></select>
             </div>
             <div class="form-group">
-              <label for="custom-desc">Short Description</label>
-              <textarea id="custom-desc" rows="3" placeholder="Describe the purpose and activities..." required></textarea>
+              <label for="signup-message">Why do you want to join?</label>
+              <textarea id="signup-message" name="message" rows="4" placeholder="Tell us about your motivation, skills, or experience…" required></textarea>
             </div>
-            <button type="submit" class="button button-dark">Add to Website ✦</button>
+            <label class="consent">
+              <input type="checkbox" id="signup-consent" required>
+              <span>I agree to be contacted about this volunteering opportunity.</span>
+            </label>
+            <p class="form-note">This demo opens your email app with a draft. It does not submit data to a server.</p>
+            <button type="submit" class="button button-dark">Submit registration ✦</button>
+            <p class="signup-success" id="signup-success" hidden>Thank you! Your registration email is ready. Please press send in your email app to complete it.</p>
           </form>
         </div>
       </div>
