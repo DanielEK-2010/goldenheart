@@ -14,7 +14,7 @@
   --gold-bright:#f0cd65;
   --gold-light:#fff3cf;
   --gold-deep:#9b741d;
-}
+} 
 
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;font-family:var(--body);color:var(--ink);background:#fff;line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
